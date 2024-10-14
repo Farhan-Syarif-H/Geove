@@ -16,7 +16,7 @@
             </a>
         </div>
 
-        <div class="grid md:grid-cols-4 grid-cols-2 mt-3 gap-6">
+        <div class="grid md:grid-cols-5 grid-cols-2 mt-3 gap-6">
             @foreach ($products as $product)
                 <div>
                     <img src="{{ url('storage/' . $product->foto) }}" alt="{{ $product->name }}" class="rounded-md">
