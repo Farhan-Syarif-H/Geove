@@ -2,9 +2,9 @@
     <div class="flex justify-center mt-8">
         <h1 class="font" style="color:#F5D042; ">Geove</h1>
     </div>
-    <h1 class="flex justify-center text-5xl text-black mt-24 p-3.5  mb-24 bg-gray-300 w-full shadow-2xl font-bold" >SELECT YOUR STYLE</h1>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
 
+        <h1 class="flex justify-center text-5xl text-black mt-24 p-3.5  mb-24 bg-gray-300 w-full shadow-2xl font-bold rounded-lg" >SELECT YOUR STYLE</h1>
 
         @if (session()->has('success'))
         <x-alert message="{{ session('success') }}" />
