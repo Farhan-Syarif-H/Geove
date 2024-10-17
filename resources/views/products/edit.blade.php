@@ -28,9 +28,14 @@
                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 </div>
 
-                <x-primary-button class="justify-center w-full mt-4 text-white" style="background-color:#D0C05B">
-                    {{ __('Submit') }}
-                </x-primary-button>
+                <div class="flex gap-2">
+                    <x-primary-button class="justify-center w-full mt-4 text-white p-7" style="background-color:#D0C05B">
+                        {{ __('Submit') }}
+                    </x-primary-button>
+                    <x-primary-button class="justify-center w-full mt-4 text-white bg-green-400">
+                       <a href="{{route('products.index')}}">{{ __('Back') }}</a>
+                    </x-primary-button>
+                </div>
                </div>
             </form>
         </div>
