@@ -35,14 +35,14 @@
                                 @auth
                                     <a
                                         href="{{ url('/dashboard') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-black dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                        class="rounded-md px-3 py-2 text-black"
                                     >
                                         Dashboard
                                     </a>
                                 @else
                                     <a
                                         href="{{ route('login') }}"
-                                        class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-black dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                        class="rounded-md px-3 py-2 text-black "
                                     >
                                         Log in
                                     </a>
@@ -50,7 +50,7 @@
                                     @if (Route::has('register'))
                                         <a
                                             href="{{ route('register') }}"
-                                            class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-black dark:hover:text-white/80 dark:focus-visible:ring-white"
+                                            class="rounded-md px-3 py-2 text-black "
                                         >
                                             Register
                                         </a>
@@ -72,7 +72,7 @@
             <!-- Swiper -->
             <div class="swiper-container">
               <div class="swiper-wrapper">
-                <div class="swiper-slide">
+                <div class="swiper-slide mt-4">
                   <img src="storage/bg2.jpg" alt="Image" class=" h-auto rounded-md">
                 </div>
               </div>
@@ -91,7 +91,7 @@
               language ocean.
             </p>
             <p class="mt-5" data-aos="fade-up">
-              <a href="#" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Get Started</a>
+              <a href="#" class="inline-block bg-gray-400 text-white px-6 py-2 rounded transition">Get Started</a>
             </p>
           </div>
         </div>
@@ -122,7 +122,7 @@
               thousands of bad Commas, wild Question Marks and devious Semikoli.
             </p>
             <p>
-              <a href="#" class="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">Get Started</a>
+              <a href="#" class="inline-block bg-gray-400 text-white px-6 py-2 rounded lg:mb-4">Get Started</a>
             </p>
           </div>
         </div>
@@ -241,8 +241,8 @@
   <!-- Footer -->
   <footer id="footer" class="footer bg-gray-100 py-8">
     <div class="container mx-auto px-4">
-      <div class="flex flex-wrap -mx-4">
-        <div class="w-full md:w-1/3 px-4 mb-8">
+      <div class="flex flex-wrap justify-between">
+        <div class="w-full md:w-1/3 px-4 mb-8 ">
           <h3 class="text-xl font-semibold mb-4">About Us</h3>
           <p class="text-gray-700 mb-4">
            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae maxime laboriosam nulla aut praesentium? Hic ut facilis praesentium qui. Inventore, consequatur ratione? Vitae, perferendis necessitatibus.
@@ -266,10 +266,8 @@
         </div>
       </div>
       <div class="mt-8 border-t pt-6 flex flex-col md:flex-row items-center justify-between">
-        <p class="text-gray-600">© <span>Copyright</span> <strong class="text-blue-600">Active.</strong> <span>All Rights Reserved</span></p>
-        <div class="text-gray-600">
-          Designed by <a href="https://bootstrapmade.com/" class="text-blue-600 hover:underline">BootstrapMade</a>
-        </div>
+        <p class="text-gray-600">©Geove. All Rights Reserved</p>
+
       </div>
     </div>
   </footer>

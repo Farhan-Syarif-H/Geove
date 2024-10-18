@@ -1,10 +1,8 @@
 <x-app-layout>
-    <div class="flex justify-center mt-8">
-        <h1 class="font" style="color:#F5D042; ">Geove</h1>
+    <div class="border-black text-center  text-black p-2.5 py-4 mb-24 bg-white w-full font-bold items-center sticky top-0 z-50">
+        <h1 class="text-4xl" >SELECT YOUR STYLES</h1>
     </div>
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
-
-        <h1 class="flex justify-center text-5xl text-black mt-24 p-3.5  mb-24 bg-gray-300 w-full shadow-2xl font-bold rounded-lg" >SELECT YOUR STYLE</h1>
 
         @if (session()->has('success'))
         <x-alert message="{{ session('success') }}" />
@@ -73,6 +71,68 @@
         </div>
       </section>
     </div>
+
+ <!-- Slider container  : slide auto-->
+ <div class="relative w-full max-w-full mx-auto mt-10 overflow-hidden rounded-lg">
+    <!-- Slide items -->
+    <div id="slider" class="flex transition-transform duration-500">
+      <div class="w-full flex-shrink-0">
+        <img src="/storage/bg.jpg" class="w-full">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="/storage/bg_2.jpg" class="w-full">
+      </div>
+      <div class="w-full flex-shrink-0">
+        <img src="/storage/bg.jpg" class="w-full">
+      </div>
+    </div>
+
+    <!-- Left Button -->
+    <button class="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-r focus:outline-none" onclick="prevSlide()">
+      &#10094; <!-- Left Arrow -->
+    </button>
+
+    <!-- Right Button -->
+    <button class="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-700 text-white px-4 py-2 rounded-l focus:outline-none" onclick="nextSlide()">
+      &#10095; <!-- Right Arrow -->
+    </button>
+
+    <!-- Indicators -->
+    <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+      <button class="w-3 h-3 bg-gray-300 rounded-full focus:outline-none" onclick="goToSlide(0)"></button>
+      <button class="w-3 h-3 bg-gray-300 rounded-full focus:outline-none" onclick="goToSlide(1)"></button>
+      <button class="w-3 h-3 bg-gray-300 rounded-full focus:outline-none" onclick="goToSlide(2)"></button>
+    </div>
+  </div>
+
+  <script>
+    const slider = document.getElementById('slider');
+    let currentSlide = 0;
+    const totalSlides = slider.children.length;
+
+    function goToSlide(slideIndex) {
+      slider.style.transform = `translateX(-${slideIndex * 100}%)`;
+      currentSlide = slideIndex;
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % totalSlides;
+      goToSlide(currentSlide);
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+      goToSlide(currentSlide);
+    }
+
+    function autoSlide() {
+      nextSlide();
+    }
+
+    // Automatically change slides every 3 seconds
+    setInterval(autoSlide, 3000);
+  </script>
+
         <div class="flex justify-between items-center mt-6">
             <h2 class=" text-xl text-white">List Products</h2>
 
@@ -81,27 +141,44 @@
             </a>
         </div>
 
-        <div class="grid md:grid-cols-5 grid-cols-2 mt-3 gap-6">
+        <div class="grid md:grid-cols-3 grid-cols-2 mt-3 gap-6">
             @foreach ($products as $product)
                 <div>
-                    <img src="{{ url('storage/' . $product->foto) }}" alt="{{ $product->name }}" class="rounded-md">
+                    {{-- <img src="{{ url('storage/' . $product->foto) }}" alt="{{ $product->name }}" class="rounded-md">
                     <div class="my-2 ">
-                        <p class="text-xl font-light text-white ">{{ $product->name }}</p>
-                        <p class=" text-gray-200">Rp. {{ number_format($product->price) }}</p>
+                        <p class="text-xl font-light">{{ $product->name }}</p>
+                        <p class="">Rp. {{ number_format($product->price) }}</p>
+                    </div> --}}
+
+                    <div class="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
+                        <div class="flex items-center p-4">
+                            <div class="w-1/3">
+                                <img src="{{ url('storage/' . $product->foto) }}" class="object-contain h-24 rounded-xl">
+                            </div>
+                            <div class="w-2/3 pl-4">
+                                <h3 class="text-xl font-semibold">{{ $product->name }}</h3>
+                                <p class="text-gray-500 text-sm">36EU - 4US</p>
+                                <p class="mt-2 text-xl font-bold text-gray-800">Rp. {{ number_format($product->price) }}</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-2 mx-3">
+
+                            <a href="{{ route('products.edit', $product) }}">
+
+                                <button class="bg-gray-100 px-10 py-2 w-full rounded-md mb-2">Edit</button>
+                            </a>
+
+                            <a href="https://www.instagram.com/lexnvert">
+
+                                <button class="bg-gray-100 px-10 py-2 w-full rounded-md ">Buy</button>
+                            </a>
+                        </div>
                     </div>
 
-                    <a href="{{ route('products.edit', $product) }}">
-
-                        <button class="bg-gray-100 px-10 py-2 w-full rounded-md mb-2">Edit</button>
-                    </a>
-
-                    <a href="">
-
-                        <button class="bg-green-400 px-10 py-2 w-full rounded-md  text-white">Buy</button>
-                    </a>
                 </div>
             @endforeach
         </div>
+
         <div class="mt-4 mb-8 text-white">
             {{ $products->links() }}
             </div>

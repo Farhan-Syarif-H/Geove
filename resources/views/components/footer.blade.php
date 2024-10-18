@@ -10,7 +10,7 @@
           <div class="mb-6 md:mb-0">
               <a href="https://flowbite.com/" class="flex items-center">
                   {{-- <img src="https://flowbite.com/docs/images/logo.svg" class="h-8 me-3" alt="FlowBite Logo" /> --}}
-                  <span class="self-center text-3xl  whitespace-nowrap text-black"><span style="color: #D0c05B;">G</span>eove</span>
+                  <span class="self-center text-3xl  whitespace-nowrap text-black">Geove</span>
               </a>
               <p style="width: 600px" >Discover the perfect pair at our online shoe store, where style meets comfort. Explore a vast selection of fashionable footwear for every occasion, including athletic, casual, and formal styles at great prices.</p>
              <p></p>

@@ -5,7 +5,7 @@
             @include('products.partials.delete-product')
         </div>
 
-        <div class="mt-4" x-data="{ imageUrl : '/storage/{{$product->foto}}' }">
+        <div class="mt-4 w-3/5" x-data="{ imageUrl : '/storage/{{$product->foto}}' }">
             {{-- Jika input berbasis file maka harus menggunakan enctype="multipart/form-data" --}}
             <form enctype="multipart/form-data" action="{{route('products.update', $product)}}" method="POST" class="gap-8">
                 @csrf
@@ -22,17 +22,17 @@
                     <x-text-input id="price" class="block mt-1 w-full" type="number" name="price" :value="$product->price" required />
                     <x-input-error :messages="$errors->get('price')" class="mt-2" />
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 ">
                     <x-input-label class="text-white" for="description" :value="__('Description')" />
                     <textarea id="description" class="block mt-1 w-full" name="description">{{ $product->description}}</textarea>
                     <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 </div>
 
-                <div class="flex gap-2">
-                    <x-primary-button class="justify-center w-full mt-4 text-white p-7" style="background-color:#D0C05B">
+                <div class="flex gap-2 w-2/4">
+                    <x-primary-button class="justify-center w-full mt-4 p-7" >
                         {{ __('Submit') }}
                     </x-primary-button>
-                    <x-primary-button class="justify-center w-full mt-4 text-white bg-green-400">
+                    <x-primary-button class="justify-center w-full mt-4">
                        <a href="{{route('products.index')}}">{{ __('Back') }}</a>
                     </x-primary-button>
                 </div>

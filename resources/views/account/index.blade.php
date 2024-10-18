@@ -16,7 +16,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="font-sans antialiased" style="background-color:#95284E">
+<body class="font-sans antialiased bg-gray-400">
     <div class="min-h-screen ">
         {{-- @include('layouts.navigation') --}}
         <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 sticky top-0 z-50">
@@ -152,7 +152,7 @@
         <!-- Page Content -->
         <main>
             <div class="flex justify-center mt-8">
-                <h1 class="text-3xl" style="color:#D0c05B;">Geove</h1>
+                <h1 class="text-3xl">Geove</h1>
             </div>
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
 
@@ -163,12 +163,12 @@
 
                 <div>
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                        <div class="flex justify-between items-center mt-6 mb-10">
-                            <h2 class="font-semibold text-xl text-white">List account</h2>
+                        <div class="flex justify-between items-center mt-6 mb-6">
+                            <h2 class=" bg-white flex items-center gap-2 rounded-md px-10 py-2">List account</h2>
 
                             <a href="{{ route('account.create') }}">
                                 <button
-                                    class=" flex items-center gap-2 bg-gray-100 px-10 py-2  rounded-md font-semibold ">Add</button>
+                                    class=" flex items-center gap-2 bg-gray-100 px-10 py-2  rounded-md">Add</button>
                             </a>
                         </div>
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12 ">
@@ -195,7 +195,7 @@
                                                 @foreach ($users as $user)
                                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                                                         <td class="py-3 px-6">{{ $user->name }} <br> <a href="{{ route('account.edit', $user) }}">
-                                                            <button class="bg-green-200 px-10 py-1 my-1 rounded-md font-semibold mb-2 ">Edit</button>
+                                                            <button class=" bg-gray-200 px-10 py-1 my-1 rounded-md  mb-2 ">Edit</button>
                                                         </a></td>
                                                         <td class="py-3 px-6">{{ $user->email }}</td>
                                                         <td class="py-3 px-6">User</td>
