@@ -175,6 +175,41 @@
             {{ $products->links() }}
         </div>
 
+         <!-- Services Section -->
+   <section id="services" class="services section bg-white py-16 mt-12 mb-12 rounded-md">
+    <div class="flex flex-wrap justify-center">
+      <div class="w-full md:w-1/3 px-4 mb-8">
+        <div class="text-center" data-aos="fade-up">
+          <div class="text-4xl text-blue-600 mb-4">
+            <i class="bi bi-bullseye"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Technology</h3>
+          <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
+        </div>
+      </div>
+      <div class="w-full md:w-1/3 px-4 mb-8">
+        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
+          <div class="text-4xl text-blue-600 mb-4">
+            <i class="bi bi-command"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Web Design</h3>
+          <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
+        </div>
+      </div>
+      <div class="w-full md:w-1/3 px-4 mb-8">
+        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
+          <div class="text-4xl text-blue-600 mb-4">
+            <i class="bi bi-bar-chart"></i>
+          </div>
+          <h3 class="text-xl font-semibold">Branding</h3>
+          <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
 
       <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
       <script>
