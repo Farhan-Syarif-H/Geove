@@ -181,27 +181,27 @@
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="text-center" data-aos="fade-up">
           <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-bullseye"></i>
+            <i class="bi bi-box-fill"></i>
           </div>
-          <h3 class="text-xl font-semibold">Technology</h3>
+          <h3 class="text-xl font-semibold">Geove</h3>
           <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
         </div>
       </div>
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="text-center" data-aos="fade-up" data-aos-delay="100">
           <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-command"></i>
+            <i class="bi bi-box-fill"></i>
           </div>
-          <h3 class="text-xl font-semibold">Web Design</h3>
+          <h3 class="text-xl font-semibold">Geove</h3>
           <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
         </div>
       </div>
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="text-center" data-aos="fade-up" data-aos-delay="200">
           <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-bar-chart"></i>
+            <i class="bi bi-box-fill"></i>
           </div>
-          <h3 class="text-xl font-semibold">Branding</h3>
+          <h3 class="text-xl font-semibold">Geove</h3>
           <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
         </div>
       </div>
