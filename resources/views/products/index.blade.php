@@ -181,7 +181,7 @@
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="text-center" data-aos="fade-up">
           <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-box-fill"></i>
+            <i class="bi bi-box"></i>
           </div>
           <h3 class="text-xl font-semibold">Geove</h3>
           <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
@@ -190,7 +190,7 @@
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="text-center" data-aos="fade-up" data-aos-delay="100">
           <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-box-fill"></i>
+            <i class="bi bi-box"></i>
           </div>
           <h3 class="text-xl font-semibold">Geove</h3>
           <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
@@ -199,7 +199,7 @@
       <div class="w-full md:w-1/3 px-4 mb-8">
         <div class="text-center" data-aos="fade-up" data-aos-delay="200">
           <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-box-fill"></i>
+            <i class="bi bi-box"></i>
           </div>
           <h3 class="text-xl font-semibold">Geove</h3>
           <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
@@ -211,15 +211,6 @@
 
 
 
-      <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-      <script>
-        $(document).ready(function () {
-          $(".slider-img").on("click", function () {
-            $(".slider-img").not(this).removeClass("active");
-            $(this).toggleClass("active");
-          });
-        });
-      </script>
 
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");
@@ -256,7 +247,7 @@
         height: 100%;
         object-fit: cover;
         border-radius: 6px;
-        filter: brightness(70%);
+        filter: brightness(90%);
         transition: transform 0.5s ease; /* Transition effect for hover */
     }
 
@@ -340,6 +331,27 @@
     }
 
     @media (max-width: 768px) {
+        .slider-image .slider-img:first-child,
+    .slider-image .slider-img:last-child {
+        height: 300px;
+    }
+
+    .slider-image .slider-img:nth-child(2),
+    .slider-image .slider-img:nth-child(6) {
+        height: 300px;
+    }
+
+    .slider-image .slider-img:nth-child(3),
+    .slider-image .slider-img:nth-child(4),
+    .slider-image .slider-img:nth-child(5) {
+        height: 300px;
+    }
+
+    .slider-img:hover {
+        width: 300px !important; /* Scale up on hover */
+        height: 300px !important; /* Maintain aspect ratio */
+    }
+
         .slider-container {
             width: 100%;
             height: 100%;
