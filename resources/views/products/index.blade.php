@@ -285,7 +285,7 @@
         top: 50%;
         left: 50%;
         transform: translateX(-50%) rotate(270deg);
-        transition: 0.7s ease;
+        transition: 0s ease;
     }
 
     .details {
@@ -382,7 +382,7 @@
             top: 50%;
             left: 50%;
             transform: translateX(-50%) rotate(270deg);
-            transition: 0.7s ease;
+            transition: 0s ease;
         }
 
         .details h2 {

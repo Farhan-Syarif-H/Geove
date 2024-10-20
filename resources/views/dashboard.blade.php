@@ -12,7 +12,7 @@
         </div>
 
         <!-- User Name Section -->
-        <div class="max-w-xl mx-auto sm:px-6 lg:px-8 px-5 mt-6 rounded-lg bg-gray-200 shadow-xl transition-transform transform hover:scale-105 duration-300">
+        <div class="max-w-xl mx-auto sm:px-6 lg:px-8 px-5 mt-6 rounded-lg bg-white shadow-xl transition-transform transform hover:scale-105 duration-300">
             <div class="p-6">
                 <span class="text-3xl font-semibold text-gray-900 tracking-wide">
                     {{ Auth::user()->name }} <span id="dynamic-emoji"></span><br>
