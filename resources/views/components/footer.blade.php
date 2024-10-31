@@ -4,7 +4,7 @@
 
 
 
-<footer class="bg-white">
+<footer class="bg-white rounded-md">
     <div class="container mx-auto px-4 py-6">
         <div class="flex flex-col md:flex-row justify-between">
             <div class="mb-6 md:mb-0">

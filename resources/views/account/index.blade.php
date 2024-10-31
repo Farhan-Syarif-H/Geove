@@ -164,13 +164,19 @@
                 <div>
                     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                         <div class="flex justify-between items-center mt-6 mb-6">
-                            <h2 class=" bg-white flex items-center gap-2 rounded-md px-10 py-2">List account</h2>
+                            <div>
+                                <h2 class=" bg-white flex items-center gap-2 rounded-md px-10 py-2 mb-2">List account</h2>
+
+                            </div>
 
                             <a href="{{ route('account.create') }}">
                                 <button
                                     class=" flex items-center gap-2 bg-gray-100 px-10 py-2  rounded-md">Add</button>
                             </a>
                         </div>
+
+
+
                         <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-12 ">
                             <div class="p-6 bg-white border-b border-gray-200">
                                 <!-- Welcome Section -->
@@ -212,13 +218,17 @@
 
                             </div>
                         </div>
+                        <div class="text-center bg-white rounded-md mb-24 py-2 " style="width: 150px;">
+                            <h3 class="text-lg sm:text-lg ">Total Account</h3>
+                            <p class="text-gray-500 text-sm">{{ DB::table('users')->count()}}</p>
+                        </div>
+                    {{-- memanggil footer dalam components --}}
+                          <x-footer />
                     </div>
-        </main>
 
-        {{-- memanggil footer dalam components --}}
+                </main>
 
-    </div>
+            </div>
 </body>
-<x-footer />
 
 </html>
