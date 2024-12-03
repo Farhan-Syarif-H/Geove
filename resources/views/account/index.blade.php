@@ -19,7 +19,7 @@
 <body class="font-sans antialiased bg-gray-400">
     <div class="min-h-screen ">
         {{-- @include('layouts.navigation') --}}
-        <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 sticky top-0 z-50">
+        <nav x-data="{ open: false }" class="bg-white border-b border-gray-100 sticky top-0 z-40">
             <!-- Primary Navigation Menu -->
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="flex justify-between h-16">
@@ -32,24 +32,31 @@
                         </div>
 
                         <!-- Navigation Links -->
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                                {{ __('Home') }}
-                            </x-nav-link>
-                        </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                        {{ __('Home') }}
+                    </x-nav-link>
+                </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
-                                {{ __('Products') }}
-                            </x-nav-link>
-                        </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
+                        {{ __('Products') }}
+                    </x-nav-link>
+                </div>
 
-                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('account.index')" :active="request()->routeIs('account.index')">
-                                {{ __('Account') }}
-                            </x-nav-link>
-                        </div>
-                    </div>
+                @if (Auth::user()->role === 'admin')
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('account.index')" :active="request()->routeIs('account.index')">
+                        {{ __('Account') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{route('orders.index')}}">
+                        {{ __('List Order') }}
+                    </x-nav-link>
+                </div>
+                @endif
+            </div>
 
                     <!-- Settings Dropdown -->
                     <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -115,9 +122,11 @@
                     <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                         {{ __('Products') }}
                     </x-responsive-nav-link>
+                    @if (Auth::user()->role === 'admin')
                     <x-responsive-nav-link :href="route('account.index')" :active="request()->routeIs('acccount.index')">
                         {{ __('Account') }}
                     </x-responsive-nav-link>
+                    @endif
                 </div>
 
                 <!-- Responsive Settings Options -->
@@ -151,6 +160,9 @@
 
         <!-- Page Content -->
         <main>
+            <div class="flex justify-end m-4 p-4">
+                <a href="{{route('users.export.excel')}}" style="border-radius: 20px; padding: 8px 16px; background-color: #0A174E; color: #fff; text-decoration: none;"> Eksport excell</a>
+            </div>
             <div class="flex justify-center mt-8">
                 <h1 class="text-3xl">Geove</h1>
             </div>
@@ -174,6 +186,7 @@
                                     class=" flex items-center gap-2 bg-gray-100 px-10 py-2  rounded-md">Add</button>
                             </a>
                         </div>
+
 
 
 
@@ -201,8 +214,15 @@
                                                 @foreach ($users as $user)
                                                     <tr class="border-b border-gray-200 hover:bg-gray-100">
                                                         <td class="py-3 px-6">{{ $user->name }} <br> <a href="{{ route('account.edit', $user) }}">
-                                                            <button class=" bg-gray-200 px-10 py-1 my-1 rounded-md  mb-2 ">Edit</button>
-                                                        </a></td>
+                                                            <div class="flex gap-2">
+                                                            <button class=" bg-gray-200 px-10 py-1 my-1 rounded-md  mb-2 ">Edit</button></a>
+                                                            <form action="{{ route('account.delete', $user->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class=" bg-gray-200 px-10 py-1 my-1 rounded-md  mb-2 ">Delete</button>
+                                                            </form>
+                                                            </div>
+                                                        </td>
                                                         <td class="py-3 px-6">{{ $user->email }}</td>
                                                         <td class="py-3 px-6">User</td>
                                                     </tr>
@@ -222,8 +242,6 @@
                             <h3 class="text-lg sm:text-lg ">Total Account</h3>
                             <p class="text-gray-500 text-sm">{{ DB::table('users')->count()}}</p>
                         </div>
-                    {{-- memanggil footer dalam components --}}
-                          <x-footer />
                     </div>
 
                 </main>

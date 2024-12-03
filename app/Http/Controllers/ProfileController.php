@@ -122,4 +122,18 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+
+
+    public function accountDelete($id)
+    {
+         //  menghapus data, mencari dengan where, lalu hapus dengan delete()
+         $account = User::findOrFail($id);
+
+         // Hapus akun
+         $account->delete();
+
+         // Redirect dengan pesan sukses
+         return redirect()->route('account.index');
+    }
 }

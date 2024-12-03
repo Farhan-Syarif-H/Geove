@@ -27,7 +27,7 @@
 <body class="index-page">
 
     <!-- Header -->
-    <header id="header" class="sticky top-0 bg-white shadow-md z-50">
+    <header id="header" class="sticky top-0 bg-white shadow-md z-40">
         <div class="container mx-auto flex items-center justify-between px-4 py-4">
             <img src="logo.jpg" alt="Geove Logo" class="w-12">
             <nav id="navmenu" class="hidden md:flex space-x-6">
@@ -52,7 +52,7 @@
 
     <!-- Modal -->
     <div id="loginModal" tabindex="-1" aria-hidden="true"
-        class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
+        class="fixed inset-0 z-20 flex items-center justify-center bg-gray-900 bg-opacity-50 hidden">
         <div class="bg-white rounded-lg shadow-md p-6 max-w-md w-full relative">
             <!-- Close Button (X) -->
             <button type="button" class="absolute top-3 right-2.5 text-gray-400 hover:text-gray-900"

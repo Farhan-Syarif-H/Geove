@@ -23,11 +23,18 @@
                     </x-nav-link>
                 </div>
 
+                @if (Auth::user()->role === 'admin')
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('account.index')" :active="request()->routeIs('account.index')">
                         {{ __('Account') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{route('orders.index')}}" :active="request()->routeIs('orders.index')">
+                        {{ __('List Order') }}
+                    </x-nav-link>
+                </div>
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
@@ -85,9 +92,11 @@
             <x-responsive-nav-link :href="route('products.index')" :active="request()->routeIs('products.index')">
                 {{ __('Products') }}
             </x-responsive-nav-link>
+            @if (Auth::user()->role === 'admin')
             <x-responsive-nav-link :href="route('account.index')" :active="request()->routeIs('acccount.index')">
                 {{ __('Account') }}
             </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->

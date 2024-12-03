@@ -1,19 +1,107 @@
 <x-app-layout>
     {{-- botstrap icon--}}
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.css" rel="stylesheet" />
 
-    <div class=" border-y-2 border-zinc-700 text-center  p-2.5 py-4 mb-24 bg-white w-full items-center sticky top-0 z-50">
-        <h1 class="text-2xl" >Step into Style, Walk with Confidence.</h1>
+
+    <div class="border-y-2 border-zinc-700 text-center p-2.5 py-4 mb-24 bg-white w-full sticky top-0 z-50 flex justify-between items-center">
+        <h1 class="text-2xl text-center flex-grow">Step into Style, Walk with Confidence.</h1>
+            <button data-modal-target="cart-modal" data-modal-toggle="cart-modal" class="bg-gray-800 bi bi-cart text-white px-4 py-2 rounded-full">
+            {{$cartItems->count()}}
+            </button>
     </div>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
 
-        @if (session()->has('success'))
-        <x-alert message="{{ session('success') }}" />
-        @endif
+    <!-- Modal Keranjang -->
+    <!-- Flowbite JS -->
+<script src="https://cdn.jsdelivr.net/npm/flowbite@1.6.5/dist/flowbite.min.js"></script>
+
+<div id="cart-modal" tabindex="-1" aria-hidden="true" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden overflow-y-auto bg-black bg-opacity-50">
+    <div class="bg-white rounded-lg shadow-lg w-full max-w-md">
+        <!-- Header -->
+        <div class="px-6 py-4 border-b flex justify-between items-center">
+            <h5 class="text-lg font-semibold text-gray-800">Keranjang Anda</h5>
+            <button type="button" class="text-gray-500 hover:text-gray-800" data-modal-hide="cart-modal">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div class="px-6 py-4">
+            @if($cartItems->count() > 0)
+                <ul class="space-y-4">
+                    @foreach($cartItems as $item)
+                        <?php $product = $item->product; ?>
+                        <li class="flex flex-col p-3 bg-gray-50 rounded-lg shadow-sm border">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-medium text-gray-800">{{ $product->name }}</p>
+                                    <p class="text-sm text-gray-600">{{ $item->quantity }} x Rp{{ number_format($product->price, 0, ',', '.') }}</p>
+                                </div>
+
+                            </div>
+                            <div class="flex gap-3 mt-2 text-right justify-end">
+                                <form action="{{ route('remove.from.cart', $item->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                        <button type="submit" class="text-sm text-white bg-red-600 px-4 py-2 rounded-lg hover:bg-red-800">
+                                           Delete
+                                        </button>
+                                </form>
+                                <!-- Tombol Checkout untuk Produk -->
+                                <form action="{{ route('checkout.single', $item->id) }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="text-sm text-white bg-green-600 px-4 py-2 rounded-lg hover:bg-green-800">
+                                        Checkout
+                                    </button>
+                                </form>
+                            </div>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p class="text-gray-600 text-center">Keranjang Anda kosong.</p>
+            @endif
+        </div>
+
+        <!-- Footer -->
+        <div class="px-6 py-4 border-t flex flex-col space-y-2">
+            <div class="flex justify-between items-center">
+                @if($cartItems->count() > 0)
+                    <form action="{{ route('checkout.all') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-primary text-sm mb-2 text-white bg-green-600 px-4 py-2 rounded-lg hover:bg-green-800">
+                            Checkout ({{ $cartItems->sum('quantity') }})
+                        </button>
+                    </form>
+                @endif
+            </div>
+            @if($cartItems->count() > 0)
+                <div class="text-right">
+                    <p class="text-sm">
+                        Total Harga: Rp{{ number_format($cartItems->sum(function ($item) {
+                            return $item->quantity * $item->product->price;
+                        }), 0, ',', '.') }}
+                    </p>
+                </div>
+            @endif
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="max-w-7xl mx-auto sm:px-6 lg:px-8 px-2">
+
+    @if (session()->has('success'))
+    <x-alert message="{{ session('success') }}" />
+    @endif
 
     <div class="mb-24">
-    {{-- slider img--}}
-    <section class="slider-container">
+        {{-- slider img--}}
+        <section class="slider-container">
         <div class="slider-image">
           <div class="slider-img">
             <img src="storage/AD.jpg" alt="1" />
@@ -143,6 +231,18 @@
                 <button class=" flex items-center gap-2 bg-gray-100 px-10 py-2  rounded-md  ">Add</button>
             </a>
         </div>
+        <form class="d-flex" role="search" action="{{ route('products.index') }}" method="GET">
+            <div class="relative w-full max-w-xs">
+                <input
+                    class="form-control w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                    type="text" placeholder="Cari Produk..." aria-label="Search" name="search">
+                <button
+                    class="absolute top-0 right-0 px-4 py-2 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 transition-all duration-300 ease-in-out"
+                    type="submit">
+                    Cari
+                </button>
+            </div>
+        </form>
 
         <div class="grid grid-cols-2 md:grid-cols-4 mt-3 gap-3">
         @foreach ($products as $product)
@@ -162,9 +262,11 @@
                             <a href="{{ route('products.edit', $product) }}">
                                 <button class="bg-gray-100 px-4 py-2 w-full rounded-md mb-2"><i class="bi bi-pencil-square"></i> Edit</button>
                             </a>
-                            <a href="https://www.instagram.com/lexnvert">
-                                <button class="bg-gray-100 px-4 py-2 w-full rounded-md"><i class="bi bi-cart"></i></button>
-                            </a>
+                            <form action="{{ route('add.to.cart', $product->id) }}" method="POST">
+                                @csrf
+                                <button class="bg-gray-100 px-4 py-2 w-full rounded-md" onclick="addToCart({{ $product->id }}, 1)"  ><i class="bi bi-cart"></i></button>
+                            </form>
+
                         </div>
                     </div>
                 </div>
@@ -174,44 +276,6 @@
         <div class="mt-4 mb-8 text-white">
             {{ $products->links() }}
         </div>
-
-         <!-- Services Section -->
-   <section id="services" class="services section bg-white py-16 mt-12 mb-12 rounded-md">
-    <div class="flex flex-wrap justify-center">
-      <div class="w-full md:w-1/3 px-4 mb-8">
-        <div class="text-center" data-aos="fade-up">
-          <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-box"></i>
-          </div>
-          <h3 class="text-xl font-semibold">Geove</h3>
-          <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
-        </div>
-      </div>
-      <div class="w-full md:w-1/3 px-4 mb-8">
-        <div class="text-center" data-aos="fade-up" data-aos-delay="100">
-          <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-box"></i>
-          </div>
-          <h3 class="text-xl font-semibold">Geove</h3>
-          <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
-        </div>
-      </div>
-      <div class="w-full md:w-1/3 px-4 mb-8">
-        <div class="text-center" data-aos="fade-up" data-aos-delay="200">
-          <div class="text-4xl text-blue-600 mb-4">
-            <i class="bi bi-box"></i>
-          </div>
-          <h3 class="text-xl font-semibold">Geove</h3>
-          <p class="mt-2 text-gray-600">Separated they live in Bookmarksgrove right at the coast</p>
-        </div>
-      </div>
-    </div>
-
-</section>
-
-
-
-
 
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap");

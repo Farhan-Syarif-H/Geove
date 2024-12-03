@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 
+use App\Models\Cart;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\ProductController;
 
@@ -14,10 +16,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(request $request)
     {
-        $products = Product::paginate(20);
-        return view ('products.index', compact('products'));
+        $products = Product::where('name', 'like', '%' . $request->search . '%')->orderBy('name', 'asc')->paginate(20);
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        return view ('products.index', compact('products','cartItems'));
     }
 
     /**
